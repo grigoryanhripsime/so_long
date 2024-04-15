@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:10:32 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/02/26 18:06:33 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/15 20:09:57 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		list_len(t_list *lst);
 char	*get_next_line(int fd);
 char	*ft_strdup(const char *s1);
 char	*create_line(t_list *lst, int line_len);
-void	add_to_list(t_list **lst, char *str);
+void	add_to_list_gnl(t_list **lst, char *str);
 void	create_list(t_list **lst, int fd);
 void	clear_list(t_list **lst);
 size_t	ft_strlen_gnl(const char *s);

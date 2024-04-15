@@ -1,17 +1,17 @@
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -I ./
+CFLAGS = -Wall -Wextra -Werror -I ./ -g3 -fsanitize=address
 
 NAME = so_long
 
-SRCS = so_long.c errors.c ft_split.c validation.c utils.c get_next_line.c get_next_line_utils.c
+SRCS = so_long.c errors.c ft_split.c validation.c utils.c get_next_line.c get_next_line_utils.c ft_strtrim.c
 
 OBJS = $(SRCS:.c=.o)
 
 
 all: $(NAME)
 
-$(NAME): $(OBJS) Makefile so_long.h
+$(NAME): $(OBJS) Makefile so_long.h 
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.c

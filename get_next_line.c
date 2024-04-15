@@ -6,13 +6,13 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:21:34 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/02/26 18:06:22 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/15 20:09:50 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	add_to_list(t_list **lst, char *str)
+void	add_to_list_gnl(t_list **lst, char *str)
 {
 	t_list	*node;
 	t_list	*new;
@@ -51,7 +51,7 @@ void	create_list(t_list **lst, int fd)
 			return ;
 		}
 		str[bytes_read] = '\0';
-		add_to_list(lst, ft_strdup(str));
+		add_to_list_gnl(lst, ft_strdup(str));
 		if (there_is_nl(str))
 			break ;
 	}

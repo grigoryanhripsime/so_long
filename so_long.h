@@ -6,12 +6,21 @@
 # include <stdio.h>
 # include "get_next_line.h"
 
+typedef struct s_map 
+{
+	char *line;
+	struct s_map *next;
+}	t_map;
+
 //errors.c
 void error_exit(char *error_message);
 
 
 //validation.c
-void check_map(char *file);
+t_map *get_map(int fd);
+
+//ft_strtrim.c
+char	*ft_strtrim(char *s1, char *set);
 
 //ft_split.c
 int	ft_strlen(char *s);
