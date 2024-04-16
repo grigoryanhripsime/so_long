@@ -7,3 +7,16 @@ int	ft_isspace(char c)
 		return (1);
 	return (0);
 }
+
+int map_len(t_map *map)
+{
+	int len;
+
+	len = 0;
+	while (map)
+	{
+		len++;
+		map = map -> next;
+	}
+	return (len);
+}

@@ -25,7 +25,7 @@ char	*ft_strtrim(char *s1, char *set)
 		return (0);
 	start = 0;
 	end = ft_strlen(s1) - 1;
-	while (check(s1[end], (char *) set) && end >= start)
+	while (end >= start && check(s1[end], (char *) set))
 		end--;
 	str = (char *)malloc(end - start + 2);
 	if (!str)

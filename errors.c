@@ -6,6 +6,23 @@ void error_exit(char *error_message)
 
     i = 0;
     while (error_message[i])
-        write(2, &error_message[i++], 1);
+    {
+        //printf("%c", error_message[i]);
+        write(2, &error_message[i], 1);
+        i++;
+    }
     exit(1);
+}
+
+void free_map(t_map *map)
+{
+    t_map *tmp;
+
+    while (map)
+	{
+		tmp = map -> next;
+        free(map -> line);
+        free(map);
+		map = tmp;
+	}
 }
