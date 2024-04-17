@@ -26,3 +26,18 @@ void free_map(t_map *map)
 		map = tmp;
 	}
 }
+
+void free_game(t_game *game)
+{
+    t_coins *tmp;
+
+    free_map(game -> map);
+
+    while (game -> coins)
+    {
+        tmp = game -> coins -> next;
+        free(game -> coins);
+        game -> coins = tmp;
+    }
+    free(game);
+}

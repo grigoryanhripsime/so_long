@@ -9,10 +9,20 @@ void print_map(t_map *map)
 	}
 }
 
+void print_coins(t_coins *coins)
+{
+	while (coins)
+	{
+		printf("pos: x: %d y: %d  collected: %d\n", coins -> coin.x, coins -> coin.y, coins -> collected);
+		coins = coins -> next;
+	}
+}
+
 int main(int argc, char *argv[])
 {
 	int fd;
 	t_map *map;
+    t_game *game;
 
     if (argc != 2)
     {
@@ -28,6 +38,6 @@ int main(int argc, char *argv[])
     trimming_map_start(&map);
     trimming_map_end(&map);
     trimming_lines(&map);
-    valid_map(&map);
-    free_map(map);
+    game = valid_map(&map);
+    free_game(game);
 }

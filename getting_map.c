@@ -95,7 +95,7 @@ void trimming_lines(t_map **map)
 	while (tmp)
 	{
 		tmp -> line = ft_strtrim(tmp -> line, " \f\n\r\t\v");
-		if (!ft_strlen(tmp ->line) || ft_isspace((tmp -> line)[0]))
+		if (!ft_strlen(tmp ->line) || ft_strchr(tmp -> line))
 		{
 			free_map(*map);
 			error_exit("White-space in map!!\n");

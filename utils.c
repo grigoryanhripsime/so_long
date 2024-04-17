@@ -20,3 +20,17 @@ int map_len(t_map *map)
 	}
 	return (len);
 }
+
+char	*ft_strchr(const char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (ft_isspace(s[i]))
+			return ((char *) s);
+		i++;
+	}
+	return (0);
+}
