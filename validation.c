@@ -81,25 +81,37 @@ void valid_start_end(t_map **map)
 	}
 }
 
-t_game *valid_map(t_map **map)
+char **get_map(t_map *map)
 {
-	t_game *game;
+	int i;
+	char **map1;
+	t_map *next;
 
+	map1 = malloc(sizeof(t_map) * (map_len(map) + 1));
+	if (!map1)
+	{
+		free_map(map);
+		error_exit("Error while malloc");
+	}
+	i = 0;
+	while (map)
+	{
+		map1[i] = map -> line;
+		next = map -> next;
+		free(map);
+		map = next;
+		i++;
+	}
+	map1[i] = NULL;
+	return (map1);
+}
+
+void valid_map(t_map **map)
+{
+    trimming_map_start(map);
+    trimming_map_end(map);
+    trimming_lines(map);
 	valid_chars(map);
 	check_borders(map);
 	valid_start_end(map);
-	game = malloc(sizeof(t_game));
-	if (!game)
-	{
-		free_map(*map);
-		error_exit("Malloc error!\n");
-	}
-	game -> map = *map;
-	game -> start = get_start(*map);
-	game -> exit = get_exit(*map);
-	game -> coins = get_coins(*map);
-	printf("Start point: x: %d, y: %d\n", game->start.x, game->start.y);
-	printf("End point: x: %d, y: %d\n", game->exit.x, game->exit.y);
-	print_coins(game -> coins);
-	return (game);
 }

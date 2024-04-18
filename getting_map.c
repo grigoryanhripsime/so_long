@@ -25,7 +25,7 @@ void add_to_map(t_map **map, char *str)
 	}
 }
 
-t_map *get_map(int fd)
+t_map *get_map_struct(int fd)
 {
     char *next_line;
 	t_map *map = NULL;

@@ -1,18 +1,18 @@
 #include "so_long.h"
 
-t_position get_start(t_map *map)
+t_position get_start(char **map)
 {
     t_position position;
     int i;
     int j;
 
     i = 0;
-    while (map)
+    while (map[i])
     {
         j = 0;
-        while (map -> line[j])
+        while (map[i][j])
         {
-            if (map -> line[j] == 'P')
+            if (map[i][j] == 'P')
             {
                 position.x = i;
                 position.y = j;
@@ -20,24 +20,23 @@ t_position get_start(t_map *map)
             j++;
         }
         i++;
-        map = map -> next;
     }
     return (position);
 }
 
-t_position get_exit(t_map *map)
+t_position get_exit(char **map)
 {
     t_position position;
     int i;
     int j;
 
     i = 0;
-    while (map)
+    while (map[i])
     {
         j = 0;
-        while (map -> line[j])
+        while (map[i][j])
         {
-            if (map -> line[j] == 'E')
+            if (map[i][j] == 'E')
             {
                 position.x = i;
                 position.y = j;
@@ -45,7 +44,6 @@ t_position get_exit(t_map *map)
             j++;
         }
         i++;
-        map = map -> next;
     }
     return (position);
 }
@@ -72,7 +70,7 @@ void add_to_coins(t_coins **coins, t_position position)
     }
 }
 
-t_coins *get_coins(t_map *map)
+t_coins *get_coins(char **map)
 {
     t_coins *coins;
     t_position position;
@@ -81,12 +79,12 @@ t_coins *get_coins(t_map *map)
 
     i = 0;
     coins = NULL;
-    while (map)
+    while (map[i])
     {
         j = 0;
-        while (map -> line[j])
+        while (map[i][j])
         {
-            if (map -> line[j] == 'C')
+            if (map[i][j] == 'C')
             {
                 position.x = i;
                 position.y = j;
@@ -95,7 +93,6 @@ t_coins *get_coins(t_map *map)
             j++;
         }
         i++;
-        map = map -> next;
     }
     return (coins);
 }

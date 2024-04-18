@@ -26,12 +26,24 @@ void free_map(t_map *map)
 		map = tmp;
 	}
 }
+void free_map1(char **map)
+{
+    int i;
+
+    i = 0;
+    while (map[i])
+	{
+        free(map[i]);
+        i++;
+	}
+    free(map);
+}
 
 void free_game(t_game *game)
 {
     t_coins *tmp;
 
-    free_map(game -> map);
+    free_map1(game -> map);
 
     while (game -> coins)
     {

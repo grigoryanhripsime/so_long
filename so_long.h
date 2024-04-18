@@ -29,7 +29,7 @@ typedef struct s_coins
 
 typedef struct s_game //malloced
 {
-	t_map *map; //malloced
+	char **map; //malloced
 	t_position start; //P
 	t_position exit; //E
 	t_coins *coins; //C  malloced
@@ -39,6 +39,7 @@ typedef struct s_game //malloced
 void error_exit(char *error_message);
 void free_map(t_map *map);
 void free_game(t_game *game);
+void free_map1(char **map);
 
 //so_long.c
 void print_map(t_map *map);
@@ -48,11 +49,12 @@ void print_coins(t_coins *coins);
 void valid_chars(t_map **map);
 void check_borders(t_map **map);
 void valid_start_end(t_map **map);
-t_game *valid_map(t_map **map);
+void valid_map(t_map **map);
+char **get_map(t_map *map);
 
 //getting_map.c
 void add_to_map(t_map **map, char *str);
-t_map *get_map(int fd);
+t_map *get_map_struct(int fd);
 void trimming_map_start(t_map **map);
 void trimming_map_end(t_map **map);
 void trimming_lines(t_map **map);
@@ -71,8 +73,8 @@ int map_len(t_map *map);
 char	*ft_strchr(const char *s);
 
 //get_positions.c
-t_position get_start(t_map *map);
-t_position get_exit(t_map *map);
-t_coins *get_coins(t_map *map);
+t_position get_start(char **map);
+t_position get_exit(char **map);
+t_coins *get_coins(char **map);
 
 #endif
