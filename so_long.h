@@ -32,6 +32,7 @@ typedef struct s_game //malloced
 	char **map; //malloced
 	t_position start; //P
 	t_position exit; //E
+	t_position player;
 	t_coins *coins; //C  malloced
 } t_game;
 

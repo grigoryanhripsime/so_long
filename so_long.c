@@ -33,6 +33,7 @@ t_game *getting_started(t_map *map)
 	}
 	game -> map = map1;
 	game -> start = get_start(map1);
+	game -> player = get_start(map1);
 	game -> exit = get_exit(map1);
 	game -> coins = get_coins(map1);
 	printf("Start point: x: %d, y: %d\n", game->start.x, game->start.y);
@@ -55,5 +56,6 @@ int main(int argc, char *argv[])
     map = get_map_struct(fd);
     valid_map(&map);
     game = getting_started(map);
+	free_map(map);
     free_game(game);
 }

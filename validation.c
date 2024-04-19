@@ -96,9 +96,8 @@ char **get_map(t_map *map)
 	i = 0;
 	while (map)
 	{
-		map1[i] = map -> line;
+		map1[i] = ft_strdup(map -> line);
 		next = map -> next;
-		free(map);
 		map = next;
 		i++;
 	}
