@@ -39,6 +39,7 @@ t_game *getting_started(t_map *map)
 	printf("Start point: x: %d, y: %d\n", game->start.x, game->start.y);
 	printf("End point: x: %d, y: %d\n", game->exit.x, game->exit.y);
 	print_coins(game -> coins);
+	free_map(map);
     return (game);
 }
 
@@ -55,7 +56,6 @@ int main(int argc, char *argv[])
     {    error_exit("Couldn't open file!\n");}
     map = get_map_struct(fd);
     valid_map(&map);
-    game = getting_started(map);
-	free_map(map);
+	game = getting_started(map);
     free_game(game);
 }

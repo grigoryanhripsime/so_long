@@ -113,4 +113,5 @@ void valid_map(t_map **map)
 	valid_chars(map);
 	check_borders(map);
 	valid_start_end(map);
+	flood_fill(*map);
 }

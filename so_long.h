@@ -72,6 +72,7 @@ char	**ft_split(char const *s);
 int	ft_isspace(char c);
 int map_len(t_map *map);
 char	*ft_strchr(const char *s);
+void flood_fill(t_map *map);
 
 //get_positions.c
 t_position get_start(char **map);
