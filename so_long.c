@@ -36,11 +36,39 @@ t_game *getting_started(t_map *map)
 	game -> player = get_start(map1);
 	game -> exit = get_exit(map1);
 	game -> coins = get_coins(map1);
-	printf("Start point: x: %d, y: %d\n", game->start.x, game->start.y);
-	printf("End point: x: %d, y: %d\n", game->exit.x, game->exit.y);
-	print_coins(game -> coins);
 	free_map(map);
     return (game);
+}
+
+int funkcia(int keycode, t_game *game)
+{
+	(void) game;
+	if (keycode == 53)
+		mlx_destroy_window(game -> mlx, game -> window);
+	return (0);
+
+}
+
+void start_mlx(t_game *game)
+{
+	int lines;
+	int columns;
+	void *mlx;
+	void *window;
+
+	mlx = mlx_init();
+	if (!mlx)
+	{
+		free_game(game);
+		error_exit("mlx_init failed!\n");
+	}
+	lines = line_count(game -> map);
+	columns = ft_strlen(game -> map[0]);
+	window = mlx_new_window(mlx, columns * 60, lines * 60, "so_long");
+	mlx_hook(window, 2, 0, &funkcia, game);
+	//mlx_loop_hook(mlx, ban, game);
+	mlx_loop(mlx);
+
 }
 
 int main(int argc, char *argv[])
@@ -57,5 +85,6 @@ int main(int argc, char *argv[])
     map = get_map_struct(fd);
     valid_map(&map);
 	game = getting_started(map);
+	start_mlx(game);
     free_game(game);
 }

@@ -8,6 +8,16 @@ int	ft_isspace(char c)
 	return (0);
 }
 
+int line_count(char **map)
+{
+	int i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
 int map_len(t_map *map)
 {
 	int len;

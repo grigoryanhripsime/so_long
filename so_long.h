@@ -6,6 +6,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include "get_next_line.h"
+# include <mlx.h>
 
 typedef struct s_map
 {
@@ -34,6 +35,8 @@ typedef struct s_game //malloced
 	t_position exit; //E
 	t_position player;
 	t_coins *coins; //C  malloced
+	void *mlx; 
+	void *window;
 } t_game;
 
 //errors.c
@@ -73,6 +76,7 @@ int	ft_isspace(char c);
 int map_len(t_map *map);
 char	*ft_strchr(const char *s);
 void flood_fill(t_map *map);
+int line_count(char **map);
 
 //get_positions.c
 t_position get_start(char **map);
