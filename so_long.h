@@ -32,11 +32,18 @@ typedef struct s_game //malloced
 {
 	char **map; //malloced
 	t_position start; //P
-	t_position exit; //E
-	t_position player;
+	t_position exit_position; //E
+	t_position player_position;
 	t_coins *coins; //C  malloced
 	void *mlx; 
 	void *window;
+	void *exit;
+	void *player;
+	void *coin;
+	void *free_space;
+	void *border;
+	int *pixel_width;
+	int *pixel_height;
 } t_game;
 
 //errors.c
@@ -82,5 +89,10 @@ int line_count(char **map);
 t_position get_start(char **map);
 t_position get_exit(char **map);
 t_coins *get_coins(char **map);
+
+//set_mlx.c
+int key_press(int keycode, t_game *game);
+void start_mlx(t_game *game);
+void locate_textures(t_game *game);
 
 #endif
