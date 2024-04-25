@@ -1,4 +1,16 @@
-# include "so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   trimming.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/25 18:16:16 by hrigrigo          #+#    #+#             */
+/*   Updated: 2024/04/25 19:02:27 by hrigrigo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
 
 static int	check(int c, char *s)
 {
@@ -41,10 +53,10 @@ char	*ft_strtrim(char *s1, char *set)
 	return (str);
 }
 
-void trimming_map_start(t_map **map)
+void	trimming_map_start(t_map **map)
 {
-	t_map *tmp;
-	t_map *next;
+	t_map	*tmp;
+	t_map	*next;
 
 	tmp = *map;
 	while (tmp)
@@ -64,10 +76,10 @@ void trimming_map_start(t_map **map)
 	(*map) = tmp;
 }
 
-void trimming_map_end(t_map **map)
+void	trimming_map_end(t_map **map)
 {
-	t_map *tmp;
-	t_map *prev;
+	t_map	*tmp;
+	t_map	*prev;
 
 	tmp = *map;
 	while (tmp && tmp -> next)
@@ -88,9 +100,9 @@ void trimming_map_end(t_map **map)
 	}
 }
 
-void trimming_lines(t_map **map)
+void	trimming_lines(t_map **map)
 {
-	t_map *tmp;
+	t_map	*tmp;
 
 	tmp = *map;
 	while (tmp)

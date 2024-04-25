@@ -1,30 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/25 18:16:23 by hrigrigo          #+#    #+#             */
+/*   Updated: 2024/04/25 19:08:59 by hrigrigo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-int look_for_coins(char **map)
+int	look_for_coins(char **map)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (map[i])
-    {
-        j = 0;
-        while (map[i][j])
-        {
-            if (map[i][j] == 'C')
-                return (1);
-            j++;
-        }
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
-void valid_chars(t_map **map)
+void	valid_chars(t_map **map)
 {
-	int i;
-	char *line;
-	t_map *tmp;
+	int		i;
+	char	*line;
+	t_map	*tmp;
 
 	tmp = *map;
 	while (tmp)
@@ -33,7 +45,8 @@ void valid_chars(t_map **map)
 		if (!line)
 			return ;
 		i = 0;
-		while (line[i] && (line[i] == '1' || line[i] == '0' || line[i] == 'C' || line[i] == 'E' || line[i] == 'P' || line[i] == 'M'))
+		while (line[i] && (line[i] == '1' || line[i] == '0' || line[i] == 'C'
+				|| line[i] == 'E' || line[i] == 'P' || line[i] == 'M'))
 			i++;
 		if (line[i])
 		{
@@ -44,18 +57,19 @@ void valid_chars(t_map **map)
 	}
 }
 
-void check_borders(t_map **map)
+void	check_borders(t_map **map)
 {
-	t_map *tmp;
-	int i;
-	int line_len;
+	t_map	*tmp;
+	int		i;
+	int		line_len;
 
 	tmp = *map;
 	line_len = ft_strlen(tmp -> line);
 	while (tmp)
 	{
 		i = 0;
-		if (ft_strlen(tmp -> line) != line_len || !((tmp -> line)[0] == '1' && (tmp -> line)[line_len - 1] == '1'))
+		if (ft_strlen(tmp -> line) != line_len || !((tmp -> line)[0] == '1'
+			&& (tmp -> line)[line_len - 1] == '1'))
 		{
 			free_map_struct(*map);
 			error_exit("Invalid border\n");
@@ -72,11 +86,11 @@ void check_borders(t_map **map)
 	}
 }
 
-void valid_map(t_map **map)
+void	valid_map(t_map **map)
 {
-    trimming_map_start(map);
-    trimming_map_end(map);
-    trimming_lines(map);
+	trimming_map_start(map);
+	trimming_map_end(map);
+	trimming_lines(map);
 	valid_chars(map);
 	check_borders(map);
 	flood_fill(*map);
