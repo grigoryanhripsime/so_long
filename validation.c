@@ -1,5 +1,25 @@
 #include "so_long.h"
 
+int look_for_coins(char **map)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (map[i])
+    {
+        j = 0;
+        while (map[i][j])
+        {
+            if (map[i][j] == 'C')
+                return (1);
+            j++;
+        }
+        i++;
+    }
+    return (0);
+}
+
 void valid_chars(t_map **map)
 {
 	int i;
@@ -13,11 +33,11 @@ void valid_chars(t_map **map)
 		if (!line)
 			return ;
 		i = 0;
-		while (line[i] && (line[i] == '1' || line[i] == '0' || line[i] == 'C' || line[i] == 'E' || line[i] == 'P'))
+		while (line[i] && (line[i] == '1' || line[i] == '0' || line[i] == 'C' || line[i] == 'E' || line[i] == 'P' || line[i] == 'M'))
 			i++;
 		if (line[i])
 		{
-			free_map(*map);
+			free_map_struct(*map);
 			error_exit("Not valid character\n");
 		}
 		tmp = tmp -> next;
@@ -37,72 +57,19 @@ void check_borders(t_map **map)
 		i = 0;
 		if (ft_strlen(tmp -> line) != line_len || !((tmp -> line)[0] == '1' && (tmp -> line)[line_len - 1] == '1'))
 		{
-			free_map(*map);
+			free_map_struct(*map);
 			error_exit("Invalid border\n");
 		}
 		while ((!tmp -> prev || !tmp -> next) && (tmp -> line)[i])
 		{
 			if ((tmp -> line)[i++] != '1')
 			{
-				free_map(*map);
+				free_map_struct(*map);
 				error_exit("Invalid border\n");
 			}
 		}
 		tmp = tmp -> next;
 	}
-}
-
-void valid_start_end(t_map **map)
-{
-	t_map *tmp;
-	int i;
-	int start;
-	int end;
-
-	tmp = *map;
-	start = 0;
-	end = 0;
-	while (tmp)
-	{
-		i = 0;
-		while ((tmp -> line)[++i])
-		{
-			if ((tmp -> line)[i - 1] == 'P')
-				start++;
-			if ((tmp -> line)[i - 1] == 'E')
-				end++;
-		}
-		tmp = tmp -> next;
-	}
-	if (start != 1 || end != 1)
-	{
-		free_map(*map);
-		error_exit("There needs to be 1 start and 1 end point\n");
-	}
-}
-
-char **get_map(t_map *map)
-{
-	int i;
-	char **map1;
-	t_map *next;
-
-	map1 = malloc(sizeof(t_map) * (map_len(map) + 1));
-	if (!map1)
-	{
-		free_map(map);
-		error_exit("Error while malloc");
-	}
-	i = 0;
-	while (map)
-	{
-		map1[i] = ft_strdup(map -> line);
-		next = map -> next;
-		map = next;
-		i++;
-	}
-	map1[i] = NULL;
-	return (map1);
 }
 
 void valid_map(t_map **map)
@@ -112,6 +79,5 @@ void valid_map(t_map **map)
     trimming_lines(map);
 	valid_chars(map);
 	check_borders(map);
-	valid_start_end(map);
 	flood_fill(*map);
 }

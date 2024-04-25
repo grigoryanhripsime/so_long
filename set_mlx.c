@@ -1,29 +1,10 @@
 #include "so_long.h"
 
-int look_for_coins(char **map)
-{
-    int i;
-    int j;
-
-    i = 0;
-    while (map[i])
-    {
-        j = 0;
-        while (map[i][j])
-        {
-            if (map[i][j] == 'C')
-                return (1);
-            j++;
-        }
-        i++;
-    }
-    return (0);
-}
-
 void locate_textures(t_game *game)
 {
     int i;
     int j;
+	char *counter;
 
     i = 0;
     while (game -> map[i])
@@ -36,6 +17,10 @@ void locate_textures(t_game *game)
         }
         i++;
     }
+	counter = ft_itoa(game -> counter);
+	mlx_string_put(game->mlx, game->window, 0, 0, 0x0000FF00, "Counter");
+	mlx_string_put(game->mlx, game->window, 80, 0, 0x0000FF00, counter);
+	free(counter);
 }
 
 void set_image(t_game *game, int i, int j)
@@ -48,6 +33,8 @@ void set_image(t_game *game, int i, int j)
 		mlx_put_image_to_window(game->mlx, game->window, game -> exit, j * 60, i * 60);
 	if (game -> map[i][j] == 'C')
 		mlx_put_image_to_window(game->mlx, game->window, game -> coin, j * 60, i * 60);
+	if (game -> map[i][j] == 'M')
+		mlx_put_image_to_window(game->mlx, game->window, game -> monster, j * 60, i * 60);
 }
 
 void set_textures(t_game *game, int columns, int lines)
@@ -64,17 +51,9 @@ void set_textures(t_game *game, int columns, int lines)
     game -> border = mlx_xpm_file_to_image(game -> mlx, "textures/border.xpm", width, height);
     game -> exit = mlx_xpm_file_to_image(game -> mlx, "textures/exit.xpm", width, height);
     game -> coin = mlx_xpm_file_to_image(game -> mlx, "textures/coin.xpm", width, height);
+	game -> monster = mlx_xpm_file_to_image(game -> mlx, "textures/monster.xpm", width, height);
 	free(height);
     free(width);
-}
-
-
-
-int clean_draw_map(t_game *game)
-{
-	mlx_clear_window(game -> mlx, game -> window);
-	locate_textures(game);
-	return (0);
 }
 
 void start_mlx(t_game *game)

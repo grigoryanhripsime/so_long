@@ -32,22 +32,18 @@ void move_left(t_game *game)
 	game -> map[game->exit_position.x][game->exit_position.y] = 'E';
 	if (player.y - 1 > 0)
 	{
+		if (game -> map[player.x][player.y - 1] == 'M')
+			check_monster(game);
 		if (game -> map[player.x][player.y - 1] == '1')
 			return ;
 		if (game -> map[player.x][player.y - 1] == 'E')
-		{
-			if (!look_for_coins(game -> map))
-			{
-				mlx_destroy_window(game -> mlx, game -> window);
-				free_game(game);
-				write(1, "You won!\n", 9);
-				exit(0);
-			}
-		}
-		game -> map[player.x][player.y] = '0';
+			check_exit(game);
+		if (!(player.x == game->exit_position.x && player.y == game->exit_position.y))
+			game -> map[player.x][player.y] = '0';
 		game -> map[player.x][player.y - 1] = 'P';
 		(game -> player_position.y)--;
 	}
+	(game -> counter)++;
 }
 
 void move_right(t_game *game, int line_len)
@@ -58,22 +54,18 @@ void move_right(t_game *game, int line_len)
 	game -> map[game -> exit_position.x][game -> exit_position.y] = 'E';
 	if (player.y + 1 <= line_len)
 	{
+		if (game -> map[player.x][player.y + 1] == 'M')
+			check_monster(game);
 		if (game -> map[player.x][player.y + 1] == '1')
 			return ;
 		if (game -> map[player.x][player.y + 1] == 'E')
-		{
-			if (!look_for_coins(game -> map))
-			{
-				mlx_destroy_window(game -> mlx, game -> window);
-				free_game(game);
-				write(1, "You won!\n", 9);
-				exit(0);
-			}
-		}
-		game -> map[player.x][player.y] = '0';
+			check_exit(game);
+		if (!(player.x == game->exit_position.x && player.y == game->exit_position.y))
+			game -> map[player.x][player.y] = '0';
 		game -> map[player.x][player.y + 1] = 'P';
 		(game -> player_position.y)++;
 	}
+	(game -> counter)++;
 }
 
 void move_top(t_game *game)
@@ -84,22 +76,18 @@ void move_top(t_game *game)
 	game -> map[game -> exit_position.x][game -> exit_position.y] = 'E';
 	if (player.x - 1 > 0)
 	{
+		if (game -> map[player.x - 1][player.y] == 'M')
+			check_monster(game);
 		if (game -> map[player.x - 1][player.y] == '1')
 			return ;
 		if (game -> map[player.x - 1][player.y] == 'E')
-		{
-			if (!look_for_coins(game -> map))
-			{
-				mlx_destroy_window(game -> mlx, game -> window);
-				free_game(game);
-				write(1, "You won!\n", 9);
-				exit(0);
-			}
-		}
-		game -> map[player.x][player.y] = '0';
+			check_exit(game);
+		if (!(player.x == game->exit_position.x && player.y == game->exit_position.y))
+			game -> map[player.x][player.y] = '0';
 		game -> map[player.x - 1][player.y] = 'P';
 		(game -> player_position.x)--;
 	}
+	(game -> counter)++;
 }
 
 void move_bottom(t_game *game, int column_len)
@@ -109,21 +97,17 @@ void move_bottom(t_game *game, int column_len)
 	player = game -> player_position;
 	game -> map[game -> exit_position.x][game -> exit_position.y] = 'E';
 	if (player.x + 1 < column_len)
-	{
+	{		
+		if (game -> map[player.x + 1][player.y] == 'M')
+			check_monster(game);
 		if (game -> map[player.x + 1][player.y] == '1')
 			return ;
 		if (game -> map[player.x + 1][player.y] == 'E')
-		{
-			if (!look_for_coins(game -> map))
-			{
-				mlx_destroy_window(game -> mlx, game -> window);
-				free_game(game);
-				write(1, "You won!\n", 9);
-				exit(0);
-			}
-		}
-		game -> map[player.x][player.y] = '0';
+			check_exit(game);
+		if (!(player.x == game->exit_position.x && player.y == game->exit_position.y))
+			game -> map[player.x][player.y] = '0';	
 		game -> map[player.x + 1][player.y] = 'P';
 		(game -> player_position.x)++;
 	}
+	(game -> counter)++;
 }

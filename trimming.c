@@ -1,43 +1,44 @@
-#include "so_long.h"
+# include "so_long.h"
 
-void add_to_map(t_map **map, char *str)
+static int	check(int c, char *s)
 {
-	t_map *new;
-	t_map *temp;
+	int	i;
 
-	new = malloc(sizeof(t_map));
-	if (!new)
-		return ;
-	new -> line = str;
-	new -> next = NULL;
-	temp = *map;
-	if (!*map)
+	i = 0;
+	while (s[i])
 	{
-		*map = new;
-		new -> prev = NULL;
+		if (s[i] == (char) c)
+			return (1);
+		i++;
 	}
-	else
-	{
-		while (temp -> next)
-			temp = temp -> next;
-		temp -> next = new;
-		new -> prev = temp;
-	}
+	return (0);
 }
 
-t_map *get_map_struct(int fd)
+char	*ft_strtrim(char *s1, char *set)
 {
-    char *next_line;
-	t_map *map = NULL;
+	int		start;
+	int		end;
+	char	*str;
+	int		i;
 
-    while (1)
-    {
-        next_line = get_next_line(fd);
-		if (!next_line)
-			break ;
-		add_to_map(&map, next_line);
-    }
-	return (map);
+	if (!s1 || !set)
+		return (0);
+	start = 0;
+	end = ft_strlen(s1) - 1;
+	while (end >= start && check(s1[end], (char *) set))
+		end--;
+	str = (char *)malloc(end - start + 2);
+	if (!str)
+		return (0);
+	i = 0;
+	while (start + i <= end)
+	{
+		str[i] = s1[start + i];
+		i++;
+	}
+	str[i] = '\0';
+	free(s1);
+	return (str);
 }
 
 void trimming_map_start(t_map **map)
@@ -97,7 +98,7 @@ void trimming_lines(t_map **map)
 		tmp -> line = ft_strtrim(tmp -> line, " \f\n\r\t\v");
 		if (!ft_strlen(tmp ->line) || ft_strchr(tmp -> line))
 		{
-			free_map(*map);
+			free_map_struct(*map);
 			error_exit("White-space in map!!\n");
 		}
 		tmp = tmp -> next;

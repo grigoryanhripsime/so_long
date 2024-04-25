@@ -72,9 +72,7 @@ static int check_for_unreachable(char **map1)
 	while (map1[i])
 	{
 		j = 0;
-		while (map1[i][j] && (map1[i][j] == '1' || map1[i][j] == 'F'))
-			j++;
-		if (map1[i][j])
+		while (map1[i][j] && map1[i][j] == 'C')
 			return (0);
 		i++;
 	}
@@ -89,8 +87,8 @@ void flood_fill(t_map *map)
 	map1 = get_map(map);
 	if (!look_for_coins(map1))
 	{
-		free_map(map);
-		free_map1(map1);
+		free_map_struct(map);
+		free_map(map1);
 		error_exit("There is no collectable!\n");
 	}
 	start = get_start(map1);
@@ -100,9 +98,9 @@ void flood_fill(t_map *map)
 	fill(map1, start, column, '0');
 	if (!check_for_unreachable(map1))
 	{
-		free_map(map);
-		free_map1(map1);
+		free_map_struct(map);
+		free_map(map1);
 		error_exit("There is an unreachable point!\n");
 	}
-	free_map1(map1);
+	free_map(map1);
 }

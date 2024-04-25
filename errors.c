@@ -13,7 +13,7 @@ void error_exit(char *error_message)
     exit(1);
 }
 
-void free_map(t_map *map)
+void free_map_struct(t_map *map)
 {
     t_map *tmp;
 
@@ -25,7 +25,7 @@ void free_map(t_map *map)
 		map = tmp;
 	}
 }
-void free_map1(char **map)
+void free_map(char **map)
 {
     int i;
 
@@ -40,6 +40,6 @@ void free_map1(char **map)
 
 void free_game(t_game *game)
 {
-    free_map1(game -> map);
+    free_map(game -> map);
     free(game);
 }
