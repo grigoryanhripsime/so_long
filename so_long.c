@@ -9,15 +9,6 @@ void print_map(t_map *map)
 	}
 }
 
-void print_coins(t_coins *coins)
-{
-	while (coins)
-	{
-		printf("pos: x: %d y: %d  collected: %d\n", coins -> coin.x, coins -> coin.y, coins -> collected);
-		coins = coins -> next;
-	}
-}
-
 t_game *getting_started(t_map *map)
 {
     t_game *game;
@@ -35,7 +26,6 @@ t_game *getting_started(t_map *map)
 	game -> start = get_start(map1);
 	game -> player_position = get_start(map1);
 	game -> exit_position = get_exit(map1);
-	game -> coins = get_coins(map1);
 	free_map(map);
     return (game);
 }

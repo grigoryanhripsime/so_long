@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -I ./ -g3 -fsanitize=address
 
 NAME = so_long
 
-SRCS = so_long.c errors.c ft_split.c validation.c utils.c get_next_line.c get_next_line_utils.c ft_strtrim.c getting_map.c get_positions.c set_mlx.c
+SRCS = so_long.c errors.c ft_split.c validation.c utils.c get_next_line.c get_next_line_utils.c ft_strtrim.c getting_map.c get_positions.c set_mlx.c move.c
 
 OBJS = $(SRCS:.c=.o)
 

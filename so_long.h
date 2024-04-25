@@ -21,20 +21,12 @@ typedef struct s_position
 	int y;
 } t_position;
 
-typedef struct s_coins
-{
-	t_position coin;
-	int collected;
-	struct s_coins *next;
-} t_coins;
-
 typedef struct s_game //malloced
 {
 	char **map; //malloced
 	t_position start; //P
 	t_position exit_position; //E
 	t_position player_position;
-	t_coins *coins; //C  malloced
 	void *mlx; 
 	void *window;
 	void *exit;
@@ -42,8 +34,6 @@ typedef struct s_game //malloced
 	void *coin;
 	void *free_space;
 	void *border;
-	int *pixel_width;
-	int *pixel_height;
 } t_game;
 
 //errors.c
@@ -54,7 +44,6 @@ void free_map1(char **map);
 
 //so_long.c
 void print_map(t_map *map);
-void print_coins(t_coins *coins);
 void check_extention(char *str);
 
 //validation.c
@@ -89,15 +78,17 @@ int line_count(char **map);
 //get_positions.c
 t_position get_start(char **map);
 t_position get_exit(char **map);
-t_coins *get_coins(char **map);
 
 //set_mlx.c
-int key_press(int keycode, t_game *game);
 void start_mlx(t_game *game);
 void locate_textures(t_game *game);
-void set_textures(t_game *game);
+void set_textures(t_game *game, int columns, int lines);
 int clean_draw_map(t_game *game);
 int look_for_coins(char **map);
+void set_image(t_game *game, int i, int j);
+
+//move.c
+int key_press(int keycode, t_game *game);
 void move_left(t_game *game);
 void move_right(t_game *game, int line_len);
 void move_top(t_game *game);

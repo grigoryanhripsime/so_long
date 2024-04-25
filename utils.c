@@ -87,6 +87,12 @@ void flood_fill(t_map *map)
 	t_position start;
 
 	map1 = get_map(map);
+	if (!look_for_coins(map1))
+	{
+		free_map(map);
+		free_map1(map1);
+		error_exit("There is no collectable!\n");
+	}
 	start = get_start(map1);
 	int column = 0;
 	while (map1[column])

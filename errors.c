@@ -7,7 +7,6 @@ void error_exit(char *error_message)
     i = 0;
     while (error_message[i])
     {
-        //printf("%c", error_message[i]);
         write(2, &error_message[i], 1);
         i++;
     }
@@ -41,15 +40,6 @@ void free_map1(char **map)
 
 void free_game(t_game *game)
 {
-    t_coins *tmp;
-
     free_map1(game -> map);
-
-    while (game -> coins)
-    {
-        tmp = game -> coins -> next;
-        free(game -> coins);
-        game -> coins = tmp;
-    }
     free(game);
 }
