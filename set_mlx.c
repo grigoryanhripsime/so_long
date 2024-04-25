@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:16:04 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/25 18:44:50 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:54:10 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ void	set_image(t_game *game, int i, int j)
 {
 	if (game -> map[i][j] == '1')
 		mlx_put_image_to_window(game->mlx, game->window,
-			game -> border, j * 60, i * 60);
-	if (game -> map[i][j] == 'P')
+			anim(game), j * 60, i * 60);
 		mlx_put_image_to_window(game->mlx, game->window,
-			game -> player, j * 60, i * 60);
+			game -> player, game->player_position.y * 60, game->player_position.x * 60);
 	if (game -> map[i][j] == 'E')
 		mlx_put_image_to_window(game->mlx, game->window,
 			game -> exit, j * 60, i * 60);
@@ -67,6 +66,8 @@ void	set_textures(t_game *game, int columns, int lines)
 			columns * 60, lines * 60, "so_long");
 	game -> player = mlx_xpm_file_to_image(game -> mlx,
 			"textures/player.xpm", width, height);
+	game -> border1 = mlx_xpm_file_to_image(game -> mlx,
+		"textures/border1.xpm", width, height);
 	game -> border = mlx_xpm_file_to_image(game -> mlx,
 			"textures/border.xpm", width, height);
 	game -> exit = mlx_xpm_file_to_image(game -> mlx,
@@ -78,6 +79,7 @@ void	set_textures(t_game *game, int columns, int lines)
 	free(height);
 	free(width);
 }
+
 
 void	start_mlx(t_game *game)
 {

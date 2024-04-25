@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:16:13 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/25 19:01:09 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:45:13 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_game //malloced
 	void		*monster;
 	void		*free_space;
 	void		*border;
+	void		*border1;
 	int			counter;
 }	t_game;
 
@@ -84,6 +85,7 @@ void		set_image(t_game *game, int i, int j);
 int			clean_draw_map(t_game *game);
 void		check_exit(t_game *game);
 void		check_monster(t_game *game);
+void		*anim(t_game *game);
 int			key_press(int keycode, t_game *game);
 void		move_left(t_game *game);
 void		move_right(t_game *game, int line_len);

@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:15:58 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/25 18:39:30 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:02:05 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	move_left(t_game *game)
 	t_position	player;
 
 	player = game -> player_position;
-	game -> map[game->exit_position.x][game->exit_position.y] = 'E';
 	if (player.y - 1 > 0)
 	{
 		if (game -> map[player.x][player.y - 1] == 'M')
@@ -50,10 +49,8 @@ void	move_left(t_game *game)
 			return ;
 		if (game -> map[player.x][player.y - 1] == 'E')
 			check_exit(game);
-		if (!(player.x == game->exit_position.x
-				&& player.y == game->exit_position.y))
-			game -> map[player.x][player.y] = '0';
-		game -> map[player.x][player.y - 1] = 'P';
+		if (game -> map[player.x][player.y - 1] == 'C')
+			game -> map[player.x][player.y - 1] = '0';
 		(game -> player_position.y)--;
 	}
 	(game -> counter)++;
@@ -64,7 +61,6 @@ void	move_right(t_game *game, int line_len)
 	t_position	player;
 
 	player = game -> player_position;
-	game -> map[game -> exit_position.x][game -> exit_position.y] = 'E';
 	if (player.y + 1 <= line_len)
 	{
 		if (game -> map[player.x][player.y + 1] == 'M')
@@ -73,10 +69,8 @@ void	move_right(t_game *game, int line_len)
 			return ;
 		if (game -> map[player.x][player.y + 1] == 'E')
 			check_exit(game);
-		if (!(player.x == game->exit_position.x
-				&& player.y == game->exit_position.y))
-			game -> map[player.x][player.y] = '0';
-		game -> map[player.x][player.y + 1] = 'P';
+		if (game -> map[player.x][player.y + 1] == 'C')
+			game -> map[player.x][player.y + 1] = '0';
 		(game -> player_position.y)++;
 	}
 	(game -> counter)++;
@@ -87,7 +81,6 @@ void	move_top(t_game *game)
 	t_position	player;
 
 	player = game -> player_position;
-	game -> map[game -> exit_position.x][game -> exit_position.y] = 'E';
 	if (player.x - 1 > 0)
 	{
 		if (game -> map[player.x - 1][player.y] == 'M')
@@ -96,10 +89,8 @@ void	move_top(t_game *game)
 			return ;
 		if (game -> map[player.x - 1][player.y] == 'E')
 			check_exit(game);
-		if (!(player.x == game->exit_position.x
-				&& player.y == game->exit_position.y))
-			game -> map[player.x][player.y] = '0';
-		game -> map[player.x - 1][player.y] = 'P';
+		if (game -> map[player.x - 1][player.y] == 'C')
+			game -> map[player.x - 1][player.y] = '0';
 		(game -> player_position.x)--;
 	}
 	(game -> counter)++;
@@ -110,7 +101,6 @@ void	move_bottom(t_game *game, int column_len)
 	t_position	player;
 
 	player = game -> player_position;
-	game -> map[game -> exit_position.x][game -> exit_position.y] = 'E';
 	if (player.x + 1 < column_len)
 	{
 		if (game -> map[player.x + 1][player.y] == 'M')
@@ -119,11 +109,8 @@ void	move_bottom(t_game *game, int column_len)
 			return ;
 		if (game -> map[player.x + 1][player.y] == 'E')
 			check_exit(game);
-		if (!(player.x == game->exit_position.x
-				&& player.y == game->exit_position.y))
-			game -> map[player.x][player.y] = '0';
-		game -> map[player.x + 1][player.y] = 'P';
+		if (game -> map[player.x + 1][player.y] == 'C')
+			game -> map[player.x + 1][player.y] = '0';
 		(game -> player_position.x)++;
 	}
-	(game -> counter)++;
 }
