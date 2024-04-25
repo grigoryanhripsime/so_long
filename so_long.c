@@ -39,6 +39,14 @@ t_game *getting_started(t_map *map)
 	free_map(map);
     return (game);
 }
+void check_extention(char *str)
+{
+	int len;
+
+	len = ft_strlen(str);
+	if (len < 5 || str[len - 4] != '.' || str[len - 3] != 'b' || str[len - 2] != 'e' || str[len - 1] != 'r')
+		error_exit("Wrong map name.\n");
+}
 
 int main(int argc, char *argv[])
 {
@@ -47,14 +55,14 @@ int main(int argc, char *argv[])
     t_game *game;
 
     if (argc != 2)
-    {    error_exit("Too few or many arguments!\n");}
+		error_exit("Too few or many arguments!\n");
+	check_extention(argv[1]);
 	fd = open(argv[1], O_RDONLY);
     if (fd < 0)
-    {    error_exit("Couldn't open file!\n");}
+    	error_exit("Couldn't open file!\n");
     map = get_map_struct(fd);
     valid_map(&map);
 	game = getting_started(map);
-	printf("__%d\n", __LINE__);
 	start_mlx(game);
     free_game(game);
 }

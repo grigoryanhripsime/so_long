@@ -11,18 +11,11 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-
-$(NAME): $(OBJS)
-	$(CC) $(OBJS) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+$(NAME): $(OBJS) Makefile so_long.h 
+	$(CC) $(CFLAGS) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $@
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
-
-# $(NAME): $(OBJS) Makefile so_long.h 
-# 	$(CC) $(CFLAGS) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $@
-
-# %.o: %.c
-# 	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)

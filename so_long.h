@@ -55,6 +55,7 @@ void free_map1(char **map);
 //so_long.c
 void print_map(t_map *map);
 void print_coins(t_coins *coins);
+void check_extention(char *str);
 
 //validation.c
 void valid_chars(t_map **map);
@@ -94,5 +95,12 @@ t_coins *get_coins(char **map);
 int key_press(int keycode, t_game *game);
 void start_mlx(t_game *game);
 void locate_textures(t_game *game);
+void set_textures(t_game *game);
+int clean_draw_map(t_game *game);
+int look_for_coins(char **map);
+void move_left(t_game *game);
+void move_right(t_game *game, int line_len);
+void move_top(t_game *game);
+void move_bottom(t_game *game, int column_len);
 
 #endif
