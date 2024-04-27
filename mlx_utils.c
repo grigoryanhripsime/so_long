@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:15:55 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/25 19:44:50 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:33:30 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ void	*anim(t_game *game)
 {
 	static int	i;
 
-	if (i < 10)
+	if (i < 20)
 	{
 		i++;
 		return (game -> coin);
 	}
-	if (i < 40)
+	if (i < 60)
 	{
 		i++;
 		return (game -> coin1);

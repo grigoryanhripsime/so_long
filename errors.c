@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:15:19 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/25 19:20:00 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/27 17:02:32 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	error_exit(char *error_message)
 		write(2, &error_message[i], 1);
 		i++;
 	}
+	system("leaks so_long");
 	exit(1);
 }
 

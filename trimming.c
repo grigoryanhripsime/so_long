@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:16:16 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/25 19:02:27 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:55:14 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	trimming_map_start(t_map **map)
 	t_map	*next;
 
 	tmp = *map;
-	while (tmp)
+	while (tmp && tmp -> line)
 	{
 		tmp -> line = ft_strtrim(tmp -> line, " \f\n\r\t\v");
 		if (!ft_strlen(tmp -> line))
@@ -68,7 +68,8 @@ void	trimming_map_start(t_map **map)
 			free(tmp -> line);
 			free(tmp);
 			tmp = next;
-			tmp -> prev = NULL;
+			if (tmp)
+				tmp -> prev = NULL;
 		}
 		else
 			break ;

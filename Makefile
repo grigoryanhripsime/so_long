@@ -1,6 +1,6 @@
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -I ./ -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I ./ #-g -fsanitize=address
 
 NAME = so_long
 
