@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:16:13 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/25 19:45:13 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/27 17:22:02 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ void		check_monster(t_game *game);
 void		*anim(t_game *game);
 int			key_press(int keycode, t_game *game);
 void		move_left(t_game *game);
-void		move_right(t_game *game, int line_len);
+void		move_right(t_game *game);
 void		move_top(t_game *game);
-void		move_bottom(t_game *game, int column_len);
+void		move_bottom(t_game *game);
 char		*ft_itoa(int n);
 
 #endif

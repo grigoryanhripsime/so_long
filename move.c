@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:15:58 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/25 20:02:05 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/27 17:22:31 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	key_press(int keycode, t_game *game)
 	if (keycode == 0)
 		move_left(game);
 	if (keycode == 2)
-		move_right(game, line_len);
+		move_right(game);
 	if (keycode == 13)
 		move_top(game);
 	if (keycode == 1)
-		move_bottom(game, column_len);
+		move_bottom(game);
 	return (0);
 }
 
@@ -41,12 +41,10 @@ void	move_left(t_game *game)
 	t_position	player;
 
 	player = game -> player_position;
-	if (player.y - 1 > 0)
+	if (game -> map[player.x][player.y - 1] != '1')
 	{
 		if (game -> map[player.x][player.y - 1] == 'M')
 			check_monster(game);
-		if (game -> map[player.x][player.y - 1] == '1')
-			return ;
 		if (game -> map[player.x][player.y - 1] == 'E')
 			check_exit(game);
 		if (game -> map[player.x][player.y - 1] == 'C')
@@ -56,17 +54,15 @@ void	move_left(t_game *game)
 	}
 }
 
-void	move_right(t_game *game, int line_len)
+void	move_right(t_game *game)
 {
 	t_position	player;
 
 	player = game -> player_position;
-	if (player.y + 1 <= line_len + 1)
+	if (game -> map[player.x][player.y + 1] != '1')
 	{
 		if (game -> map[player.x][player.y + 1] == 'M')
 			check_monster(game);
-		if (game -> map[player.x][player.y + 1] == '1')
-			return ;
 		if (game -> map[player.x][player.y + 1] == 'E')
 			check_exit(game);
 		if (game -> map[player.x][player.y + 1] == 'C')
@@ -81,12 +77,10 @@ void	move_top(t_game *game)
 	t_position	player;
 
 	player = game -> player_position;
-	if (player.x - 1 > 0)
+	if (game -> map[player.x - 1][player.y] != '1')
 	{
 		if (game -> map[player.x - 1][player.y] == 'M')
 			check_monster(game);
-		if (game -> map[player.x - 1][player.y] == '1')
-			return ;
 		if (game -> map[player.x - 1][player.y] == 'E')
 			check_exit(game);
 		if (game -> map[player.x - 1][player.y] == 'C')
@@ -96,17 +90,15 @@ void	move_top(t_game *game)
 	}
 }
 
-void	move_bottom(t_game *game, int column_len)
+void	move_bottom(t_game *game)
 {
 	t_position	player;
 
 	player = game -> player_position;
-	if (player.x + 1 < column_len)
+	if (game -> map[player.x + 1][player.y] != '1')
 	{
 		if (game -> map[player.x + 1][player.y] == 'M')
 			check_monster(game);
-		if (game -> map[player.x + 1][player.y] == '1')
-			return ;
 		if (game -> map[player.x + 1][player.y] == 'E')
 			check_exit(game);
 		if (game -> map[player.x + 1][player.y] == 'C')
