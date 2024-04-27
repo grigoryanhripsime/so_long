@@ -45,13 +45,13 @@ void	*anim(t_game *game)
 	if (i < 10)
 	{
 		i++;
-		return (game -> border);
+		return (game -> coin);
 	}
 	if (i < 40)
 	{
 		i++;
-		return (game -> border1);
+		return (game -> coin1);
 	}
 	i = 0;
-	return (game -> border1);
+	return (game -> coin);
 }

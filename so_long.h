@@ -43,10 +43,10 @@ typedef struct s_game //malloced
 	void		*exit;
 	void		*player;
 	void		*coin;
+	void		*coin1;
 	void		*monster;
 	void		*free_space;
 	void		*border;
-	void		*border1;
 	int			counter;
 }	t_game;
 

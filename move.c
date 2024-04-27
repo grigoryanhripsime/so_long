@@ -52,8 +52,8 @@ void	move_left(t_game *game)
 		if (game -> map[player.x][player.y - 1] == 'C')
 			game -> map[player.x][player.y - 1] = '0';
 		(game -> player_position.y)--;
+		(game -> counter)++;
 	}
-	(game -> counter)++;
 }
 
 void	move_right(t_game *game, int line_len)
@@ -61,7 +61,7 @@ void	move_right(t_game *game, int line_len)
 	t_position	player;
 
 	player = game -> player_position;
-	if (player.y + 1 <= line_len)
+	if (player.y + 1 <= line_len + 1)
 	{
 		if (game -> map[player.x][player.y + 1] == 'M')
 			check_monster(game);
@@ -72,8 +72,8 @@ void	move_right(t_game *game, int line_len)
 		if (game -> map[player.x][player.y + 1] == 'C')
 			game -> map[player.x][player.y + 1] = '0';
 		(game -> player_position.y)++;
+		(game -> counter)++;
 	}
-	(game -> counter)++;
 }
 
 void	move_top(t_game *game)
@@ -92,8 +92,8 @@ void	move_top(t_game *game)
 		if (game -> map[player.x - 1][player.y] == 'C')
 			game -> map[player.x - 1][player.y] = '0';
 		(game -> player_position.x)--;
+		(game -> counter)++;
 	}
-	(game -> counter)++;
 }
 
 void	move_bottom(t_game *game, int column_len)
@@ -112,5 +112,6 @@ void	move_bottom(t_game *game, int column_len)
 		if (game -> map[player.x + 1][player.y] == 'C')
 			game -> map[player.x + 1][player.y] = '0';
 		(game -> player_position.x)++;
+		(game -> counter)++;
 	}
 }

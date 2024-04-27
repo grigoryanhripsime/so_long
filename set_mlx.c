@@ -39,7 +39,7 @@ void	set_image(t_game *game, int i, int j)
 {
 	if (game -> map[i][j] == '1')
 		mlx_put_image_to_window(game->mlx, game->window,
-			anim(game), j * 60, i * 60);
+			game -> border, j * 60, i * 60);
 		mlx_put_image_to_window(game->mlx, game->window,
 			game -> player, game->player_position.y * 60, game->player_position.x * 60);
 	if (game -> map[i][j] == 'E')
@@ -47,7 +47,7 @@ void	set_image(t_game *game, int i, int j)
 			game -> exit, j * 60, i * 60);
 	if (game -> map[i][j] == 'C')
 		mlx_put_image_to_window(game->mlx, game->window,
-			game -> coin, j * 60, i * 60);
+			anim(game), j * 60, i * 60);
 	if (game -> map[i][j] == 'M')
 		mlx_put_image_to_window(game->mlx, game->window,
 			game -> monster, j * 60, i * 60);
@@ -66,14 +66,14 @@ void	set_textures(t_game *game, int columns, int lines)
 			columns * 60, lines * 60, "so_long");
 	game -> player = mlx_xpm_file_to_image(game -> mlx,
 			"textures/player.xpm", width, height);
-	game -> border1 = mlx_xpm_file_to_image(game -> mlx,
-		"textures/border1.xpm", width, height);
 	game -> border = mlx_xpm_file_to_image(game -> mlx,
 			"textures/border.xpm", width, height);
 	game -> exit = mlx_xpm_file_to_image(game -> mlx,
 			"textures/exit.xpm", width, height);
 	game -> coin = mlx_xpm_file_to_image(game -> mlx,
 			"textures/coin.xpm", width, height);
+	game -> coin1 = mlx_xpm_file_to_image(game -> mlx,
+			"textures/coin1.xpm", width, height);
 	game -> monster = mlx_xpm_file_to_image(game -> mlx,
 			"textures/monster.xpm", width, height);
 	free(height);
