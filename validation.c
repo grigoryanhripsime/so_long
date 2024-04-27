@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:16:23 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/27 16:59:27 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:58:02 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	check_borders(t_map **map)
 	t_map	*tmp;
 	int		i;
 	int		line_len;
-	
+
 	tmp = *map;
 	line_len = ft_strlen(tmp -> line);
 	while (tmp)

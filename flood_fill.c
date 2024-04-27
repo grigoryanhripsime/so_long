@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:14:51 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/25 20:09:34 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/27 20:01:56 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	check_for_unreachable(char **map1)
 		j = 0;
 		while (map1[i][j])
 		{
-			if(map1[i][j] == 'C' || map1[i][j] == 'E')
+			if (map1[i][j] == 'C' || map1[i][j] == 'E')
 				return (0);
 			j++;
 		}

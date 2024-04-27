@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:16:08 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/27 17:00:23 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:18:21 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char *argv[])
 		error_exit("Couldn't open file!\n");
 	map = get_map_struct(fd);
 	valid_map(&map);
-	printf("__%d\n", __LINE__);
 	game = getting_positions(map);
 	start_mlx(game);
 	free_game(game);

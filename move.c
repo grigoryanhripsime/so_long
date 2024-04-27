@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:15:58 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/27 17:22:31 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/27 20:01:03 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	key_press(int keycode, t_game *game)
 	{
 		mlx_destroy_window(game -> mlx, game -> window);
 		free_game(game);
+		system("leaks so_long");
 		exit(0);
 	}
 	if (keycode == 0)
@@ -40,6 +41,7 @@ void	move_left(t_game *game)
 {
 	t_position	player;
 
+	game -> c = 'l';
 	player = game -> player_position;
 	if (game -> map[player.x][player.y - 1] != '1')
 	{
@@ -58,6 +60,7 @@ void	move_right(t_game *game)
 {
 	t_position	player;
 
+	game -> c = 'r';
 	player = game -> player_position;
 	if (game -> map[player.x][player.y + 1] != '1')
 	{

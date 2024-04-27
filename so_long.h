@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:16:13 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/27 17:22:02 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/27 19:51:28 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@ typedef struct s_game //malloced
 	void		*window;
 	void		*exit;
 	void		*player;
+	void		*player1;
 	void		*coin;
 	void		*coin1;
 	void		*monster;
 	void		*free_space;
 	void		*border;
 	int			counter;
+	char		c;
 }	t_game;
 
 void		error_exit(char *error_message);
@@ -92,5 +94,6 @@ void		move_right(t_game *game);
 void		move_top(t_game *game);
 void		move_bottom(t_game *game);
 char		*ft_itoa(int n);
+int			mouse_press(t_game *game);
 
 #endif

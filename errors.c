@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:15:19 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/27 17:02:32 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/27 20:02:07 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	error_exit(char *error_message)
 	int	i;
 
 	i = 0;
+	write(2, "Error\n", 6);
 	while (error_message[i])
 	{
 		write(2, &error_message[i], 1);
