@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:16:18 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/25 19:14:03 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:28:11 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,22 @@ char	*ft_strchr(const char *s)
 		i++;
 	}
 	return (0);
+}
+
+void	*anim(t_game *game)
+{
+	static int	i;
+
+	if (i < 50)
+	{
+		i++;
+		return (game -> coin1);
+	}
+	if (i < 150)
+	{
+		i++;
+		return (game -> coin);
+	}
+	i = 0;
+	return (game -> coin);
 }

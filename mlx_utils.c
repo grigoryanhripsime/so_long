@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:15:55 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/27 20:06:01 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:38:59 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	check_exit(t_game *game)
 		mlx_destroy_window(game -> mlx, game -> window);
 		free_game(game);
 		write(1, "You won :)\n", 11);
-		system("leaks so_long");
 		exit(0);
 	}
 }
@@ -36,32 +35,12 @@ void	check_monster(t_game *game)
 	mlx_destroy_window(game -> mlx, game -> window);
 	write(1, "You lost :(\n", 12);
 	free_game(game);
-	system("leaks so_long");
 	exit(0);
-}
-
-void	*anim(t_game *game)
-{
-	static int	i;
-
-	if (i < 100)
-	{
-		i++;
-		return (game -> coin1);
-	}
-	if (i < 500)
-	{
-		i++;
-		return (game -> coin);
-	}
-	i = 0;
-	return (game -> coin);
 }
 
 int	mouse_press(t_game *game)
 {
 	mlx_destroy_window(game -> mlx, game -> window);
 	free_game(game);
-	system("leaks so_long");
 	exit(0);
 }

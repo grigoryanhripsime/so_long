@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:16:08 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/27 19:18:21 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:18:00 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,4 @@ int	main(int argc, char *argv[])
 	game = getting_positions(map);
 	start_mlx(game);
 	free_game(game);
-	system("leaks so_long");
 }

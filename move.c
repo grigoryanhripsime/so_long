@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:15:58 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/27 20:01:03 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:17:55 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	key_press(int keycode, t_game *game)
 	{
 		mlx_destroy_window(game -> mlx, game -> window);
 		free_game(game);
-		system("leaks so_long");
 		exit(0);
 	}
 	if (keycode == 0)

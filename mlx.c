@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_mlx.c                                          :+:      :+:    :+:   */
+/*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:16:04 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/27 20:01:13 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:39:14 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	set_image(t_game *game, int i, int j)
 			game -> monster, j * 60, i * 60);
 }
 
-void	set_textures(t_game *game, int columns, int lines)
+void	set_textures(t_game *game)
 {
 	int	*height;
 	int	*width;
@@ -75,8 +75,6 @@ void	set_textures(t_game *game, int columns, int lines)
 	*(height) = 60;
 	width = malloc(sizeof(int));
 	*(width) = 60;
-	game -> window = mlx_new_window(game -> mlx,
-			columns * 60, lines * 60, "so_long");
 	game -> player = mlx_xpm_file_to_image(game -> mlx,
 			"textures/player.xpm", width, height);
 	game -> player1 = mlx_xpm_file_to_image(game -> mlx,
@@ -108,7 +106,9 @@ void	start_mlx(t_game *game)
 	}
 	lines = line_count(game -> map);
 	columns = ft_strlen(game -> map[0]);
-	set_textures(game, columns, lines);
+	game -> window = mlx_new_window(game -> mlx,
+			columns * 60, lines * 60, "so_long");
+	set_textures(game);
 	locate_textures(game);
 	mlx_hook(game -> window, 2, 0, &key_press, game);
 	mlx_hook(game -> window, 17, 0, &mouse_press, game);

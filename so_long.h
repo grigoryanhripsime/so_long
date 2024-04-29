@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:16:13 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/27 19:51:28 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:35:49 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ char		*ft_strchr(const char *s);
 void		flood_fill(t_map *map);
 int			line_count(char **map);
 char		**get_map(t_map *map);
-t_position	get_start(char **map);
-t_position	get_exit(char **map);
+int			check_start_end_coins(char **map);
+t_position	get_position(char **map, char c);
 t_game		*getting_positions(t_map *map);
 void		start_mlx(t_game *game);
 void		locate_textures(t_game *game);
-void		set_textures(t_game *game, int columns, int lines);
+void		set_textures(t_game *game);
 void		set_image(t_game *game, int i, int j);
 int			clean_draw_map(t_game *game);
 void		check_exit(t_game *game);
@@ -95,5 +95,6 @@ void		move_top(t_game *game);
 void		move_bottom(t_game *game);
 char		*ft_itoa(int n);
 int			mouse_press(t_game *game);
+void		check_textures(t_game *game);
 
 #endif

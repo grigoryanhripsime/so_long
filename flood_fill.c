@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:14:51 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/27 20:01:56 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:22:43 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ void	flood_fill(t_map *map)
 	int			column;
 
 	map1 = get_map(map);
-	if (!look_for_coins(map1))
+	if (!check_start_end_coins(map1))
 	{
 		free_map_struct(map);
 		free_map(map1);
-		error_exit("There is no collectable!\n");
+		error_exit("Invalid map!\n");
 	}
-	start = get_start(map1);
+	start = get_position(map1, 'P');
 	column = 0;
 	while (map1[column])
 		column++;

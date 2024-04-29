@@ -6,7 +6,7 @@
 /*   By: hrigrigo <hrigrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 18:15:45 by hrigrigo          #+#    #+#             */
-/*   Updated: 2024/04/25 19:19:24 by hrigrigo         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:25:57 by hrigrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,11 @@ char	**get_map(t_map *map)
 	return (map1);
 }
 
-t_position	get_start(char **map)
+void	look_for_start_end(char **map, int *start, int *exit, int *coins)
 {
-	t_position	position;
-	int			i;
-	int			j;
+	int	i;
+	int	j;
 
-	position.x = -1;
-	position.y = -1;
 	i = 0;
 	while (map[i])
 	{
@@ -51,18 +48,33 @@ t_position	get_start(char **map)
 		while (map[i][j])
 		{
 			if (map[i][j] == 'P')
-			{
-				position.x = i;
-				position.y = j;
-			}
+				(*start)++;
+			if (map[i][j] == 'E')
+				(*exit)++;
+			if (map[i][j] == 'C')
+				(*coins)++;
 			j++;
 		}
 		i++;
 	}
-	return (position);
 }
 
-t_position	get_exit(char **map)
+int	check_start_end_coins(char **map)
+{
+	int	start;
+	int	exit;
+	int	coins;
+
+	start = 0;
+	exit = 0;
+	coins = 0;
+	look_for_start_end(map, &start, &exit, &coins);
+	if (start != 1 || exit != 1 || coins < 1)
+		return (0);
+	return (1);
+}
+
+t_position	get_position(char **map, char c)
 {
 	t_position	position;
 	int			i;
@@ -76,7 +88,7 @@ t_position	get_exit(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'E')
+			if (map[i][j] == c)
 			{
 				position.x = i;
 				position.y = j;
@@ -94,22 +106,23 @@ t_game	*getting_positions(t_map *map)
 	char	**map1;
 
 	map1 = get_map(map);
+	if (!check_start_end_coins(map1))
+	{
+		free_map_struct(map);
+		free_map(map1);
+		error_exit("Invalid map!\n");
+	}
 	game = malloc(sizeof(t_game));
 	if (!game)
 	{
+		free_map(map1);
 		free_map_struct(map);
 		error_exit("Malloc error!\n");
 	}
 	game -> map = map1;
-	game -> player_position = get_start(map1);
-	game -> exit_position = get_exit(map1);
+	game -> player_position = get_position(map1, 'P');
+	game -> exit_position = get_position(map1, 'E');
 	game -> counter = 0;
 	free_map_struct(map);
-	if (game -> player_position.x == -1 || game -> player_position.y == -1
-		|| game -> exit_position.x == -1 || game -> exit_position.y == -1)
-	{
-		free_game(game);
-		error_exit("Needs to be 1 start and 1 end point!\n");
-	}
 	return (game);
 }
